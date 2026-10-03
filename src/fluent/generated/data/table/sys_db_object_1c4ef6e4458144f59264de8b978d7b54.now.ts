@@ -19,10 +19,10 @@ export const x_146833_jevnowint_request = Table({
             label: [{ label: 'State', plural: '' }],
             default: 'pending',
             choices: {
-                pending:    { label: 'Pending',    sequence: 1 },
+                pending: { label: 'Pending', sequence: 1 },
                 processing: { label: 'Processing', sequence: 2 },
-                processed:  { label: 'Processed',  sequence: 3 },
-                failed:     { label: 'Failed',     sequence: 4 },
+                processed: { label: 'Processed', sequence: 3 },
+                failed: { label: 'Failed', sequence: 4 },
             },
             maxLength: 40,
         }),
@@ -49,9 +49,11 @@ export const x_146833_jevnowint_request = Table({
         }),
         u_input_tokens: IntegerColumn({
             label: [{ label: 'Input Tokens', plural: '' }],
+            maxLength: 40,
         }),
         u_output_tokens: IntegerColumn({
             label: [{ label: 'Output Tokens', plural: '' }],
+            maxLength: 40,
         }),
         u_error: StringColumn({
             label: [{ label: 'Error', plural: '' }],
@@ -68,6 +70,10 @@ export const x_146833_jevnowint_request = Table({
         u_caller_context: StringColumn({
             label: [{ label: 'Caller Context', plural: '' }],
             maxLength: 200,
+        }),
+        test_column: StringColumn({
+            label: 'test column',
+            maxLength: 40,
         }),
     },
 })
