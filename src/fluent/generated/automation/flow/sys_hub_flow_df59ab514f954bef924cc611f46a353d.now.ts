@@ -31,7 +31,7 @@ Flow(
                 $id: Now.ID['bca0b017a5d344ecabf7cf9f0293f0bf'],
             },
             {
-                request_sys_id: wfa.dataPill(_params.trigger.current.sys_id, 'string'),
+                request_sys_id: wfa.dataPill(_params.trigger.current['sys_id'], 'string'),
             }
         )
     }
