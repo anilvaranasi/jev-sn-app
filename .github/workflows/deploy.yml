@@ -3,6 +3,10 @@ name: Deploy to ServiceNow
 on:
   push:
     branches: [nowdev, prod]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - '.github/workflows/**'
 
 jobs:
   # ── Stage 1: Build ────────────────────────────────────────────────────────
