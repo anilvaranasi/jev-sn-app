@@ -11,8 +11,11 @@ ScriptInclude({
     apiName: 'x_146833_jevnowint.JevClient',
     active: true,
     clientCallable: false,
-    description: 'Fluent HTTP wrapper for the TypeSafe Jev API. Chain .withState().ask().evaluate() to get structured AI judgments.',
+    description:
+        'Fluent HTTP wrapper for the TypeSafe Jev API. Chain .withState().ask().evaluate() to get structured AI judgments.',
     script: Now.include('../server/JevClient.server.js'),
+    mobileCallable: false,
+    sandboxCallable: false,
 })
 
 // ─── 2. SCRIPT INCLUDE — JevQuestions ───────────────────────────────────────
@@ -25,6 +28,8 @@ ScriptInclude({
     clientCallable: false,
     description: 'Builders for TypeSafe question primitives: JevQuestions.noul(), .choice(), .score()',
     script: Now.include('../server/JevQuestions.server.js'),
+    mobileCallable: false,
+    sandboxCallable: false,
 })
 
 // ─── 3. BUSINESS RULE — Enrich Incident on Insert ───────────────────────────
@@ -33,7 +38,7 @@ ScriptInclude({
 
 BusinessRule({
     $id: Now.ID['br_jev_enrich_incident'],
-    name: 'x_146833_jevnowint - Enrich Incident with Jev on Insert',
+    name: 'x_146833_jevnowint - Enrich Incident wit',
     table: 'incident',
     active: true,
     when: 'after',
