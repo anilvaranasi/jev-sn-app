@@ -1,25 +1,16 @@
 name: Pull from ServiceNow
 
-# Manually triggered — pulls SN changes back into mydev as Fluent source code.
+# Manually triggered — pulls SN DEV changes back into mydev as Fluent source code.
 # nowdev/prod are deploy-only targets; they always receive code from mydev via PR.
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Instance to pull from'
-        required: true
-        default: 'dev'
-        type: choice
-        options:
-          - dev
-          - prod
 
 jobs:
   pull:
-    name: Pull ${{ github.event.inputs.environment }} → mydev
+    name: Pull DEV → mydev
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
+    environment: dev
 
     steps:
       - name: Checkout mydev
@@ -36,9 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # ── DEV ─────────────────────────────────────────────────────────────────
       - name: Authenticate now-sdk to DEV
-        if: github.event.inputs.environment == 'dev'
         run: |
           echo "${{ secrets.SN_DEV_PASS }}" | npx now-sdk auth \
             --add "${{ secrets.SN_DEV_INSTANCE }}" \
@@ -48,30 +37,13 @@ jobs:
             --password-stdin
 
       - name: Transform from DEV → src/
-        if: github.event.inputs.environment == 'dev'
         run: npx now-sdk transform --auth dev
 
-      # ── PROD ────────────────────────────────────────────────────────────────
-      - name: Authenticate now-sdk to PROD
-        if: github.event.inputs.environment == 'prod'
-        run: |
-          echo "${{ secrets.SN_PROD_PASS }}" | npx now-sdk auth \
-            --add "${{ secrets.SN_PROD_INSTANCE }}" \
-            --type basic \
-            --alias prod \
-            --username "${{ secrets.SN_PROD_USER }}" \
-            --password-stdin
-
-      - name: Transform from PROD → src/
-        if: github.event.inputs.environment == 'prod'
-        run: npx now-sdk transform --auth prod
-
-      # ── Commit back to mydev ─────────────────────────────────────────────────
       - name: Commit and push to mydev
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/
           git diff --cached --quiet && echo "No changes pulled from SN" && exit 0
-          git commit -m "chore: pull from SN ${{ github.event.inputs.environment }} [skip ci]"
+          git commit -m "chore: pull from SN dev [skip ci]"
           git push origin mydev
