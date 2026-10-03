@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<record_update table="sys_module">
+  <sys_module action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>abeed2566c9a4528be281b4f3da2148a</sys_id>
+    <sys_scope display_value="x_146833_jevnowint">61b08e848333c310b96f6ed0deaad31d</sys_scope>
+    <sys_update_name>sys_module_abeed2566c9a4528be281b4f3da2148a</sys_update_name>
+    <content><![CDATA[{
+  "name": "jev-now-integration",
+  "version": "1.0.0",
+  "description": "ServiceNow scoped app — TypeSafe Jev AI judgments via the Fluent SDK",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "now-sdk build",
+    "deploy": "now-sdk install",
+    "transform": "now-sdk transform",
+    "types": "now-sdk dependencies"
+  },
+  "devDependencies": {
+    "@servicenow/sdk": "4.13.0",
+    "@servicenow/glide": "27.0.5"
+  }
+}]]></content>
+    <external_source>false</external_source>
+    <path>x_146833_jevnowint/jev-now-integration/1.0.0/package.json</path>
+    <sys_name>x_146833_jevnowint/jev-now-integration/1.0.0/package.json</sys_name>
+  </sys_module>
+</record_update>

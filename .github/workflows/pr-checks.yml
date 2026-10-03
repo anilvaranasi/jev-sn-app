@@ -1,0 +1,35 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [nowdev, prod]
+
+jobs:
+  build:
+    name: Build & validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Validate now.config.json
+        run: |
+          node -e "
+            const cfg = require('./now.config.json');
+            if (!cfg.scope)   { console.error('Missing scope');   process.exit(1); }
+            if (!cfg.scopeId) { console.error('Missing scopeId'); process.exit(1); }
+            if (!cfg.name)    { console.error('Missing name');    process.exit(1); }
+            console.log('now.config.json valid — scope:', cfg.scope, '| scopeId:', cfg.scopeId);
+          "

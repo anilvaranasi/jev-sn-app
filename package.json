@@ -1,0 +1,16 @@
+{
+    "name": "jev-now-integration",
+    "version": "1.0.0",
+    "description": "ServiceNow scoped app — TypeSafe Jev AI judgments via the Fluent SDK",
+    "license": "UNLICENSED",
+    "scripts": {
+        "build": "now-sdk build",
+        "deploy": "now-sdk install",
+        "transform": "now-sdk transform",
+        "types": "now-sdk dependencies"
+    },
+    "devDependencies": {
+        "@servicenow/sdk": "4.13.0",
+        "@servicenow/glide": "27.0.5"
+    }
+}

@@ -1,0 +1,117 @@
+name: Deploy to ServiceNow
+
+on:
+  push:
+    branches: [nowdev, prod]
+
+jobs:
+  # ── Stage 1: Build ────────────────────────────────────────────────────────
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: dist/
+          retention-days: 1
+
+  # ── Stage 2: Deploy to DEV (nowdev branch) ────────────────────────────────
+  deploy-dev:
+    name: Deploy → DEV Instance
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/nowdev'
+    environment: dev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-build
+          path: dist/
+
+      - name: Authenticate now-sdk to DEV
+        run: |
+          echo "${{ secrets.SN_DEV_PASS }}" | npx now-sdk auth \
+            --add "${{ secrets.SN_DEV_INSTANCE }}" \
+            --type basic \
+            --alias dev \
+            --username "${{ secrets.SN_DEV_USER }}" \
+            --password-stdin
+
+      - name: Deploy to DEV
+        run: npx now-sdk install --auth dev
+
+      - name: Summary
+        run: echo "✅ Deployed JevNowIntegration (x_146833_jevnowint) to DEV successfully."
+
+  # ── Stage 3: Deploy to PROD (prod branch, requires manual approval) ───────
+  deploy-prod:
+    name: Deploy → PROD Instance
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/prod'
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-build
+          path: dist/
+
+      - name: Authenticate now-sdk to PROD
+        run: |
+          echo "${{ secrets.SN_PROD_PASS }}" | npx now-sdk auth \
+            --add "${{ secrets.SN_PROD_INSTANCE }}" \
+            --type basic \
+            --alias prod \
+            --username "${{ secrets.SN_PROD_USER }}" \
+            --password-stdin
+
+      - name: Deploy to PROD
+        run: npx now-sdk install --auth prod
+
+      - name: Summary
+        run: echo "✅ Deployed JevNowIntegration (x_146833_jevnowint) to PROD successfully."
