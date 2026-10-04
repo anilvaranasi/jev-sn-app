@@ -5,6 +5,10 @@ declare global {
         namespace Internal {
             interface Keys extends KeysRegistry {
                 explicit: {
+                    '05073218837f4710b96f6ed0deaad3ad': {
+                        table: 'sys_hub_flow_snapshot'
+                        id: '05073218837f4710b96f6ed0deaad3ad'
+                    }
                     '142796d8833b4710b96f6ed0deaad39a': {
                         table: 'sys_hub_action_type_snapshot'
                         id: '142796d8833b4710b96f6ed0deaad39a'
@@ -66,9 +70,17 @@ declare global {
                         table: 'sys_hub_action_type_definition'
                         id: '4c1712d8833b4710b96f6ed0deaad3f7'
                     }
+                    '4f617a98833f4710b96f6ed0deaad371': {
+                        table: 'sys_hub_flow'
+                        id: '4f617a98833f4710b96f6ed0deaad371'
+                    }
                     '5610401883b30710b96f6ed0deaad38d': {
                         table: 'sys_rte_eb_definition'
                         id: '5610401883b30710b96f6ed0deaad38d'
+                    }
+                    '6a5332dc833f4710b96f6ed0deaad3b7': {
+                        table: 'sys_hub_action_instance_v2'
+                        id: '6a5332dc833f4710b96f6ed0deaad3b7'
                     }
                     '7a8bee9883fb4710b96f6ed0deaad39a': {
                         table: 'sys_kmf_module_key_policy'
@@ -82,6 +94,14 @@ declare global {
                         table: 'sys_script'
                         id: '9a169b6fb87b4d7dbede770df376e599'
                         deleted: true
+                    }
+                    ab29329c837f4710b96f6ed0deaad31a: {
+                        table: 'sys_hub_action_instance_v2'
+                        id: 'ab29329c837f4710b96f6ed0deaad31a'
+                    }
+                    af813e98833f4710b96f6ed0deaad35d: {
+                        table: 'sys_hub_trigger_instance_v2'
+                        id: 'af813e98833f4710b96f6ed0deaad35d'
                     }
                     bom_json: {
                         table: 'sys_module'
@@ -105,6 +125,14 @@ declare global {
                         table: 'sys_alias'
                         id: 'd632ee1483bb4710b96f6ed0deaad31a'
                     }
+                    db003cec83bf8710b96f6ed0deaad3f1: {
+                        table: 'sys_script_include'
+                        id: 'db003cec83bf8710b96f6ed0deaad3f1'
+                    }
+                    e36b76d083bf4710b96f6ed0deaad393: {
+                        table: 'sys_hub_flow_logic_instance_v2'
+                        id: 'e36b76d083bf4710b96f6ed0deaad393'
+                    }
                     f5f5c629b2144116a942b14d4b049b7b: {
                         table: 'sys_hub_action_type_definition'
                         id: 'f5f5c629b2144116a942b14d4b049b7b'
@@ -124,6 +152,10 @@ declare global {
                         id: 'c50b2213790441b0a392374f30a9d6c3'
                         deleted: true
                     }
+                    src_server_br_populate_questions_on_insert_js: {
+                        table: 'sys_module'
+                        id: '9dc7b7e4543d4c67a880c35651880a4b'
+                    }
                     src_server_JevClient_server_js: {
                         table: 'sys_module'
                         id: 'd6d261aa78bb4d74bcbc7598cb3bc171'
@@ -135,6 +167,14 @@ declare global {
                     src_server_JevQuestions_server_js: {
                         table: 'sys_module'
                         id: '2b3cd01cc5c8478ea556558d6d1c0cc9'
+                    }
+                    src_server_seed_jev_field_map_fix_js: {
+                        table: 'sys_module'
+                        id: 'b9a29886b4f14e23bed45143d6c0f4b7'
+                    }
+                    src_server_seed_jev_requests_sample_fix_js: {
+                        table: 'sys_module'
+                        id: 'e6ff2e76fda8461cae13765ae872b1eb'
                     }
                 }
                 composite: [
@@ -167,6 +207,24 @@ declare global {
                             id: 'fc12585883770710b96f6ed0deaad356'
                             table: 'var__m_sys_flow_step_definition_input_106afb6647032200b4fad7527c9a71e7'
                             field: 'script'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '016041288373c710b96f6ed0deaad3f0'
+                        key: {
+                            list_id: {
+                                id: '60d1b6d8833f4710b96f6ed0deaad360'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_state_text'
                         }
                     },
                     {
@@ -218,6 +276,7 @@ declare global {
                     {
                         table: 'sys_hub_flow_input'
                         id: '0491fe98833f4710b96f6ed0deaad3ee'
+                        deleted: false
                         key: {
                             model: '4f617a98833f4710b96f6ed0deaad371'
                             element: 'current'
@@ -280,6 +339,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '06a61a71fbbf4bc89b0b109ec7223cfc'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_element_mapping'
                         id: '082796d8833b4710b96f6ed0deaad373'
                         key: {
@@ -304,6 +371,15 @@ declare global {
                             id: '325ab6c8833bc310b96f6ed0deaad384'
                             table: 'var__m_sys_hub_action_output_325ab6c8833bc310b96f6ed0deaad384'
                             field: 'error'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '0adb85d8185c4d7ba9d88422ecf69a28'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_jev_type'
+                            language: 'en'
                         }
                     },
                     {
@@ -418,6 +494,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '10e1fad8833f4710b96f6ed0deaad3bc'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -516,8 +593,27 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '14ba7c688333c710b96f6ed0deaad37b'
+                        key: {
+                            list_id: {
+                                id: '1cba7c688333c710b96f6ed0deaad376'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_source_table'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '14e1fad8833f4710b96f6ed0deaad3b9'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -535,6 +631,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '14e1fad8833f4710b96f6ed0deaad3cd'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -562,6 +659,7 @@ declare global {
                     {
                         table: 'sys_dictionary'
                         id: '1607550338134d03a4cd6e652c8b0c83'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_is_urgent_noul'
@@ -587,8 +685,27 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '18ba7c688333c710b96f6ed0deaad37a'
+                        key: {
+                            list_id: {
+                                id: '1cba7c688333c710b96f6ed0deaad376'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_question'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '18e1fad8833f4710b96f6ed0deaad3b6'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -647,6 +764,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '1a0c896afefb4742954aa055a48b9ccb'
+                        key: {
+                            name: 'x_146833_jevnowint_request'
+                            element: 'number'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '1a6a3ec8833bc310b96f6ed0deaad359'
                         deleted: true
@@ -700,8 +825,44 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list'
+                        id: '1cba7c688333c710b96f6ed0deaad376'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                            element: 'NULL'
+                            relationship: 'NULL'
+                            parent: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '1cba7c688333c710b96f6ed0deaad379'
+                        key: {
+                            list_id: {
+                                id: '1cba7c688333c710b96f6ed0deaad376'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_choices'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '1ce1fad8833f4710b96f6ed0deaad3b3'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -798,6 +959,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '2271c9a88373c710b96f6ed0deaad3f2'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_caller_table'
+                            position: '11'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '23a76b2fc19b4abe890c438ce5bcd44b'
                         deleted: true
@@ -847,6 +1025,40 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '26710da88373c710b96f6ed0deaad303'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_error'
+                            position: '18'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '2671c9a88373c710b96f6ed0deaad3ef'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_caller_sys_id'
+                            position: '7'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '27f366088377c310b96f6ed0deaad3e3'
                         deleted: true
@@ -880,6 +1092,23 @@ declare global {
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_state'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '2a71c9a88373c710b96f6ed0deaad3ec'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '3'
                         }
                     },
                     {
@@ -949,6 +1178,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '2e71c9a88373c710b96f6ed0deaad3f4'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '15'
+                        }
+                    },
+                    {
                         table: 'sys_hub_flow_input'
                         id: '2f05e5c19b254332a701234395ad9120'
                         deleted: true
@@ -960,6 +1206,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: '31ca8b45db9e41e8b3925baff6caf3ac'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_task_id'
@@ -969,6 +1216,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: '32077218837f4710b96f6ed0deaad38f'
+                        deleted: false
                         key: {
                             name: 'var__m_sys_hub_flow_input_05073218837f4710b96f6ed0deaad3ad'
                             element: 'table_name'
@@ -990,6 +1238,14 @@ declare global {
                         deleted: true
                         key: {
                             action_type_id: '8b632e848377c310b96f6ed0deaad317'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '34fdb3bf39e1437abd6c1f90604bc2bb'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_source_field'
                         }
                     },
                     {
@@ -1034,8 +1290,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '3a3c084afaad42d898c26162c2f695c2'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_source_table'
+                        }
+                    },
+                    {
                         table: 'sys_hub_flow_input'
                         id: '3b81fe98833f4710b96f6ed0deaad3ce'
+                        deleted: false
                         key: {
                             model: '4f617a98833f4710b96f6ed0deaad371'
                             element: 'table_name'
@@ -1071,6 +1336,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '3e88b4248333c710b96f6ed0deaad36b'
+                        key: {
+                            sys_ui_section: {
+                                id: '7e88b4248333c710b96f6ed0deaad364'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_question'
+                            position: '1'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: '3ff3a6088377c310b96f6ed0deaad328'
                         deleted: true
@@ -1082,6 +1364,7 @@ declare global {
                     {
                         table: 'sys_hub_flow_input'
                         id: '409132d8833f4710b96f6ed0deaad306'
+                        deleted: false
                         key: {
                             model: '4f617a98833f4710b96f6ed0deaad371'
                             element: 'changed_fields'
@@ -1097,12 +1380,42 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '44a209e9628642459d3289606e4796d5'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_jev_type'
+                            value: 'choice'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '45229eaf29784ad08f4812b985fb1e31'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_severity_score'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '456041288373c710b96f6ed0deaad3e1'
+                        key: {
+                            list_id: {
+                                id: '60d1b6d8833f4710b96f6ed0deaad360'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'number'
                         }
                     },
                     {
@@ -1163,6 +1476,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '4e2867d2a199439799e6a6bf3c93c4d9'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_jev_type'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '4f4a97e21076411d9d8d98fe3976273a'
                         key: {
@@ -1201,6 +1522,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: '5031f1bc9d28447f8f5cecda52f82201'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_severity_confidence'
@@ -1226,6 +1548,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '50e1fad8833f4710b96f6ed0deaad3b3'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1243,6 +1566,7 @@ declare global {
                     {
                         table: 'sys_hub_flow_input'
                         id: '51073218837f4710b96f6ed0deaad3b0'
+                        deleted: false
                         key: {
                             model: '05073218837f4710b96f6ed0deaad3ad'
                             element: 'current'
@@ -1322,6 +1646,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '54e1fad8833f4710b96f6ed0deaad3bb'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1334,6 +1659,17 @@ declare global {
                             }
                             element: 'u_output_tokens'
                             position: '15'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '5510193d91c94349b29acc5c325b058d'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_jev_type'
+                            value: 'noul'
+                            language: 'en'
+                            dependent_value: 'NULL'
                         }
                     },
                     {
@@ -1411,6 +1747,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '58e1fad8833f4710b96f6ed0deaad3b8'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1428,6 +1765,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '58e1fad8833f4710b96f6ed0deaad3cc'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1445,6 +1783,7 @@ declare global {
                     {
                         table: 'sys_dictionary'
                         id: '591ae266dd81444fac671d639ba4c571'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_department_confidence'
@@ -1461,6 +1800,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_number'
+                        id: '5a1001e48373c710b96f6ed0deaad322'
+                        key: {
+                            category: 'x_146833_jevnowint_request'
+                            prefix: 'JEV'
+                        }
+                    },
+                    {
                         table: 'sys_element_mapping'
                         id: '5b5af6c8833bc310b96f6ed0deaad352'
                         deleted: true
@@ -1473,6 +1820,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: '5c2b26c482a54d108ddd330f8fec9e7c'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_department_choice'
@@ -1491,6 +1839,7 @@ declare global {
                     {
                         table: 'sys_dictionary'
                         id: '5ca2f2c02dd7408da3e2f181f96d37b2'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_severity_score'
@@ -1499,6 +1848,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '5ce1fad8833f4710b96f6ed0deaad3b5'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1516,6 +1866,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '5ce1fad8833f4710b96f6ed0deaad3c9'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1628,6 +1979,13 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_db_object'
+                        id: '62086f7ac1a7489eb7cfd104d54777a1'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '626a3ec8833bc310b96f6ed0deaad3e1'
                         deleted: true
@@ -1635,6 +1993,23 @@ declare global {
                             name: 'var__m_sys_hub_flow_input_e26a3ec8833bc310b96f6ed0deaad3b0'
                             element: 'table_name'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '6271c9a88373c710b96f6ed0deaad3f4'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_model'
+                            position: '14'
                         }
                     },
                     {
@@ -1651,6 +2026,15 @@ declare global {
                                 }
                             }
                             sys_domain: 'global'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '63c75ab516d24ffc915154f68a991a6e'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'NULL'
+                            language: 'en'
                         }
                     },
                     {
@@ -1685,6 +2069,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '64e1fad8833f4710b96f6ed0deaad3cf'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -1717,8 +2102,43 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '66710da88373c710b96f6ed0deaad305'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '21'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '6671c9a88373c710b96f6ed0deaad3f1'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_questions'
+                            position: '10'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '667e5498568d438082123170d0a62bf8'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_is_urgent_noul'
@@ -1781,6 +2201,49 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '6a710da88373c710b96f6ed0deaad302'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '17'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '6a71c9a88373c710b96f6ed0deaad3ee'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_answers'
+                            position: '6'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '6b61911e13e646998ef8253c275285c4'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_active'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list_element'
                         id: '6cd1b6d8833f4710b96f6ed0deaad363'
                         key: {
@@ -1817,6 +2280,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '6e71c9a88373c710b96f6ed0deaad3eb'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_model_used'
+                            position: '2'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '6f8f2c521079443f913b4489fe09cb03'
                         key: {
@@ -1828,6 +2308,7 @@ declare global {
                     {
                         table: 'sys_hub_flow_input'
                         id: '71077218837f4710b96f6ed0deaad34a'
+                        deleted: false
                         key: {
                             model: '05073218837f4710b96f6ed0deaad3ad'
                             element: 'changed_fields'
@@ -1914,6 +2395,31 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '7a03ef154bb54b58aaa7c7ec6a8b787b'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_choices'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '7a88b4248333c710b96f6ed0deaad36a'
+                        key: {
+                            sys_ui_section: {
+                                id: '7e88b4248333c710b96f6ed0deaad364'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_jev_type'
+                            position: '0'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '7aa4234f5bee4b20915beef0a1cbd42f'
                         deleted: true
@@ -1969,6 +2475,63 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_section'
+                        id: '7e88b4248333c710b96f6ed0deaad364'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            caption: 'NULL'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '7e88b4248333c710b96f6ed0deaad36d'
+                        key: {
+                            sys_ui_section: {
+                                id: '7e88b4248333c710b96f6ed0deaad364'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_choices'
+                            position: '4'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '7e88b4248333c710b96f6ed0deaad393'
+                        key: {
+                            sys_ui_section: {
+                                id: '7e88b4248333c710b96f6ed0deaad364'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_source_field'
+                            position: '5'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '7faaa2a008084fdd849023df85e6b2ab'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_question'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '802796d8833b4710b96f6ed0deaad360'
                         key: {
@@ -2006,6 +2569,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '8424f323810f4931a9bf6de6481cd7b4'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_jev_type'
+                            value: 'score'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '84cf338883b30710b96f6ed0deaad3c0'
                         deleted: true
@@ -2022,6 +2596,15 @@ declare global {
                         key: {
                             model: 'fc12585883770710b96f6ed0deaad356'
                             element: 'success'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '858ca17da9d8461497c28bcabb669212'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_source_field'
+                            language: 'en'
                         }
                     },
                     {
@@ -2070,6 +2653,24 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '896041288373c710b96f6ed0deaad3ef'
+                        key: {
+                            list_id: {
+                                id: '60d1b6d8833f4710b96f6ed0deaad360'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_state'
+                        }
+                    },
+                    {
                         table: 'sys_hub_step_ext_input'
                         id: '89f6e31bf0804c75b5e0113832b99c60'
                         deleted: true
@@ -2081,6 +2682,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: '8a077218837f4710b96f6ed0deaad351'
+                        deleted: false
                         key: {
                             name: 'var__m_sys_hub_flow_input_05073218837f4710b96f6ed0deaad3ad'
                             element: 'changed_fields'
@@ -2135,6 +2737,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '8ff86f4ea9c246309e39d581dbaa4a01'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_active'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '90b1489c83b30710b96f6ed0deaad388'
                         deleted: true
@@ -2145,8 +2755,27 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '90ba7c688333c710b96f6ed0deaad37a'
+                        key: {
+                            list_id: {
+                                id: '1cba7c688333c710b96f6ed0deaad376'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_jev_type'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '90e1fad8833f4710b96f6ed0deaad3b5'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -2215,6 +2844,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '94e1fad8833f4710b96f6ed0deaad3b2'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -2257,6 +2887,7 @@ declare global {
                     {
                         table: 'sys_dictionary'
                         id: '955a22d5d4e540a39c34961f6e7a8741'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_severity_confidence'
@@ -2319,6 +2950,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '98e1fad8833f4710b96f6ed0deaad3ba'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -2336,6 +2968,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '98e1fad8833f4710b96f6ed0deaad3ce'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -2387,6 +3020,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: '9c9132d8833f4710b96f6ed0deaad30d'
+                        deleted: false
                         key: {
                             name: 'var__m_sys_hub_flow_input_4f617a98833f4710b96f6ed0deaad371'
                             element: 'changed_fields'
@@ -2403,8 +3037,45 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '9cba7c688333c710b96f6ed0deaad378'
+                        key: {
+                            list_id: {
+                                id: '1cba7c688333c710b96f6ed0deaad376'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_active'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '9cba7c688333c710b96f6ed0deaad37a'
+                        key: {
+                            list_id: {
+                                id: '1cba7c688333c710b96f6ed0deaad376'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'u_source_field'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '9ce1fad8833f4710b96f6ed0deaad3b7'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -2422,6 +3093,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '9ce1fad8833f4710b96f6ed0deaad3cb'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -2457,6 +3129,7 @@ declare global {
                     {
                         table: 'sys_hub_flow_input'
                         id: '9e077218837f4710b96f6ed0deaad387'
+                        deleted: false
                         key: {
                             model: '05073218837f4710b96f6ed0deaad3ad'
                             element: 'table_name'
@@ -2535,6 +3208,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'a271c9a88373c710b96f6ed0deaad3eb'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'number'
+                            position: '1'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'a323a8e941354ba290eacab26287be60'
                         deleted: true
@@ -2579,6 +3269,23 @@ declare global {
                         key: {
                             model: 'f5f5c629b2144116a942b14d4b049b7b'
                             element: 'answers_json'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'a671c9a88373c710b96f6ed0deaad3f3'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_state'
+                            position: '13'
                         }
                     },
                     {
@@ -2628,6 +3335,40 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'aa710da88373c710b96f6ed0deaad304'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '20'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'aa71c9a88373c710b96f6ed0deaad3f0'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_state_text'
+                            position: '9'
+                        }
+                    },
+                    {
                         table: 'sys_variable_value'
                         id: 'abf366088377c310b96f6ed0deaad3e2'
                         deleted: true
@@ -2652,6 +3393,31 @@ declare global {
                         key: {
                             model: 'f5f5c629b2144116a942b14d4b049b7b'
                             element: '__dont_treat_as_error__'
+                        }
+                    },
+                    {
+                        table: 'sys_choice_set'
+                        id: 'ad810d5238d64359ac736b897a3944b4'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_jev_type'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'ae71c9a88373c710b96f6ed0deaad3ed'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '5'
                         }
                     },
                     {
@@ -2682,9 +3448,27 @@ declare global {
                     {
                         table: 'sys_dictionary'
                         id: 'b111364fc5dd4b6dbd803b573cc73ac4'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_department_choice'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'b288b4248333c710b96f6ed0deaad36d'
+                        key: {
+                            sys_ui_section: {
+                                id: '7e88b4248333c710b96f6ed0deaad364'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_active'
+                            position: '3'
                         }
                     },
                     {
@@ -2700,6 +3484,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: 'b5077218837f4710b96f6ed0deaad307'
+                        deleted: false
                         key: {
                             name: 'var__m_sys_hub_flow_input_05073218837f4710b96f6ed0deaad3ad'
                             element: 'current'
@@ -2771,9 +3556,17 @@ declare global {
                     {
                         table: 'sys_dictionary'
                         id: 'ba8007f27ef940cb9cb70e60d2189db7'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_task_id'
+                        }
+                    },
+                    {
+                        table: 'ua_table_licensing_config'
+                        id: 'bacad6a8242a4054877ed674b1e6d808'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
                         }
                     },
                     {
@@ -2810,6 +3603,15 @@ declare global {
                         key: {
                             name: 'var__m_sys_hub_action_input_142796d8833b4710b96f6ed0deaad39a'
                             element: 'requestbody'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: 'c00d8f1f59094eb99b02849cb1a5af7e'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_question'
                             language: 'en'
                         }
                     },
@@ -2882,6 +3684,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: 'c89132d8833f4710b96f6ed0deaad301'
+                        deleted: false
                         key: {
                             name: 'var__m_sys_hub_flow_input_4f617a98833f4710b96f6ed0deaad371'
                             element: 'current'
@@ -2929,6 +3732,15 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: 'cb14ac707fc0498990a5a22a5fd66e25'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_choices'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_element_mapping'
                         id: 'cb5af6c8833bc310b96f6ed0deaad30b'
                         deleted: true
@@ -2966,6 +3778,15 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: 'cc3ca8927fce4447bdcdb2a8aec3db8a'
+                        key: {
+                            name: 'x_146833_jevnowint_request'
+                            element: 'number'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_hub_action_input'
                         id: 'cc4cea1c83fb4710b96f6ed0deaad397'
                         key: {
@@ -2976,6 +3797,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: 'cc91fe98833f4710b96f6ed0deaad3e9'
+                        deleted: false
                         key: {
                             name: 'var__m_sys_hub_flow_input_4f617a98833f4710b96f6ed0deaad371'
                             element: 'table_name'
@@ -3013,6 +3835,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'd0e1fad8833f4710b96f6ed0deaad3b7'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3030,6 +3853,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'd0e1fad8833f4710b96f6ed0deaad3cb'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3075,6 +3899,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'd4e1fad8833f4710b96f6ed0deaad3b4'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3160,6 +3985,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'd8e1fad8833f4710b96f6ed0deaad3b1'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3177,6 +4003,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'd8e1fad8833f4710b96f6ed0deaad3bc'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3265,6 +4092,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'dce1fad8833f4710b96f6ed0deaad3b9'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3282,6 +4110,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'dce1fad8833f4710b96f6ed0deaad3cd'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: '6294089483f30710b96f6ed0deaad304'
@@ -3397,6 +4226,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'e271c9a88373c710b96f6ed0deaad3ed'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_input_tokens'
+                            position: '4'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'e3f366088377c310b96f6ed0deaad3f9'
                         deleted: true
@@ -3441,6 +4287,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'e671c9a88373c710b96f6ed0deaad3f5'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_output_tokens'
+                            position: '16'
+                        }
+                    },
+                    {
                         table: 'sys_hub_action_status_metadata'
                         id: 'e82796d8833b4710b96f6ed0deaad3d6'
                         key: {
@@ -3464,6 +4327,23 @@ declare global {
                         key: {
                             document_key: '44cf338883b30710b96f6ed0deaad3e4'
                             variable: '58715a1c53f22010d3a8ddeeff7b1248'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'ea71c9a88373c710b96f6ed0deaad3f2'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.begin_split'
+                            position: '12'
                         }
                     },
                     {
@@ -3513,6 +4393,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'ee71c9a88373c710b96f6ed0deaad3ef'
+                        key: {
+                            sys_ui_section: {
+                                id: '6294089483f30710b96f6ed0deaad304'
+                                key: {
+                                    name: 'x_146833_jevnowint_request'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_caller_context'
+                            position: '8'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'efeaf8b32d4042b59558c6d482f4e0ef'
                         deleted: true
@@ -3553,10 +4450,36 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: 'f62a6ac733d0490d831e79eaef3cb000'
+                        key: {
+                            name: 'x_146833_jevnowint_field_map'
+                            element: 'u_source_table'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'ua_table_licensing_config'
                         id: 'f64a72c8833bc310b96f6ed0deaad373'
                         key: {
                             name: 'x_146833_jevnowint_request'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'f688b4248333c710b96f6ed0deaad36c'
+                        key: {
+                            sys_ui_section: {
+                                id: '7e88b4248333c710b96f6ed0deaad364'
+                                key: {
+                                    name: 'x_146833_jevnowint_field_map'
+                                    caption: 'NULL'
+                                    view: 'Default view'
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'u_source_table'
+                            position: '2'
                         }
                     },
                     {
@@ -3598,6 +4521,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: 'fd141c09925c4504afbd3c8800cc5f31'
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'u_department_confidence'

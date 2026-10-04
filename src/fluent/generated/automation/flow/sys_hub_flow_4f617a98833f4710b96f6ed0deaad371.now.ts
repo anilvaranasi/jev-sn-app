@@ -44,11 +44,25 @@ Flow(
 **example: var shortDesc = fd_data.trigger.current.short_description;
 **return shortDesc;
 */
+var stateText = fd_data.trigger.current.u_state_text + '';
+var questionsText = fd_data.trigger.current.u_questions + '';
+
+// state_text is now a structured JSON object built by the BR
+var state = {};
+if (stateText) {
+    try { state = JSON.parse(stateText); } catch(e) {}
+}
+
+// questions is also built by the BR from the field map config
+var questions = {};
+if (questionsText) {
+    try { questions = JSON.parse(questionsText); } catch(e) {}
+}
 
 var request_body = JSON.stringify({
-    state:     fd_data.trigger.current.u_state_text + '',
+    state:     state,
     model:     fd_data.trigger.current.u_model + '' || 'jev-1.13-free',
-    questions: JSON.parse(fd_data.trigger.current.u_questions)
+    questions: questions
 });
 return request_body;`),
             }
@@ -76,8 +90,8 @@ return JSON.parse(fd_data._1__invokejevrestapi.reponse);`),
                 uuid: '782b8f09-2b30-4ca2-a3f8-3a43be314cff',
             },
             {
-                record: wfa.dataPill(_params.trigger.current, 'reference'),
                 table_name: 'x_146833_jevnowint_request',
+                record: wfa.dataPill(_params.trigger.current, 'reference'),
                 values: TemplateValue({
                     u_state: wfa.inlineScript(`/*
 **Access Flow/Action data using the fd_data object. Script must return a value. 
