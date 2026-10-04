@@ -79,6 +79,10 @@ export const x_146833_jevnowint_request = Table({
             label: 'Result',
             maxLength: 4000,
         }),
+        u_result_summary: StringColumn({
+            label: 'Result Summary (JSON)',
+            maxLength: 4000,
+        }),
         u_severity_score: IntegerColumn({
             maxLength: 40,
         }),
