@@ -98,5 +98,15 @@ export const x_146833_jevnowint_request = Table({
         u_department_confidence: DecimalColumn({
             maxLength: 15,
         }),
+        number: StringColumn({
+            attributes: {
+                ignore_filter_on_new: true,
+            },
+            default: 'javascript:global.getNextObjNumberPadded();',
+            maxLength: 40,
+        }),
+    },
+    autoNumber: {
+        prefix: 'JEV',
     },
 })
