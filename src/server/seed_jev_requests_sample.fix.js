@@ -38,9 +38,10 @@ while (incGr.next()) {
 
     var jr = new GlideRecord('x_146833_jevnowint_request');
     jr.initialize();
-    jr.setValue('u_caller_table',  'incident');
-    jr.setValue('u_caller_sys_id', incSysId);
-    jr.setValue('u_state',         'pending');
+    jr.setValue('u_caller_table',   'incident');
+    jr.setValue('u_caller_sys_id',  incSysId);
+    jr.setValue('u_caller_context', incNum + ' - ' + (incGr.getValue('short_description') || '').substring(0, 150));
+    jr.setValue('u_state',          'pending');
     // u_questions and u_state_text will be auto-populated by the BR before insert
     jr.insert();
 
