@@ -49,9 +49,11 @@ export const x_146833_jevnowint_request = Table({
         }),
         u_input_tokens: IntegerColumn({
             label: [{ label: 'Input Tokens', plural: '' }],
+            maxLength: 40,
         }),
         u_output_tokens: IntegerColumn({
             label: [{ label: 'Output Tokens', plural: '' }],
+            maxLength: 40,
         }),
         u_error: StringColumn({
             label: [{ label: 'Error', plural: '' }],
