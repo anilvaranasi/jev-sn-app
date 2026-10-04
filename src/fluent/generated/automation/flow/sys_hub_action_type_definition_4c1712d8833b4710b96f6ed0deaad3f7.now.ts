@@ -533,7 +533,7 @@ Record({
     data: {
         action_id: '4c1712d8833b4710b96f6ed0deaad3f7',
         plan: '{"@class":"com.snc.process_flow.engine.serialization.plan_data.ChunkingPlanData","chunk_data":{"table":"sys_hub_action_plan","id":"282796d8833b4710b96f6ed0deaad3de","name":"plan","plan_signature":null},"plan_data":"CHUNKING_PLAN"}',
-        snapshot: '684876d8837f4710b96f6ed0deaad3f8',
+        snapshot: '0b8c6a5c83fb4710b96f6ed0deaad389',
         sys_domain: 'global',
         sys_domain_path: '/',
     },

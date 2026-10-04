@@ -76,8 +76,8 @@ return JSON.parse(fd_data._1__invokejevrestapi.reponse);`),
                 uuid: '782b8f09-2b30-4ca2-a3f8-3a43be314cff',
             },
             {
-                record: wfa.dataPill(_params.trigger.current, 'reference'),
                 table_name: 'x_146833_jevnowint_request',
+                record: wfa.dataPill(_params.trigger.current, 'reference'),
                 values: TemplateValue({
                     u_state: wfa.inlineScript(`/*
 **Access Flow/Action data using the fd_data object. Script must return a value. 

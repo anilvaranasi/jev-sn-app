@@ -45,9 +45,9 @@ export const x_146833_jevnowint_field_map = Table({
         u_jev_type: ChoiceColumn({
             label: 'Jev Type',
             choices: {
-                noul:   { label: 'Noul (yes/no)',       sequence: 1 },
-                choice: { label: 'Choice (pick one)',   sequence: 2 },
-                score:  { label: 'Score (rated level)', sequence: 3 },
+                noul: { label: 'Noul (yes/no)', sequence: 1 },
+                choice: { label: 'Choice (pick one)', sequence: 2 },
+                score: { label: 'Score (rated level)', sequence: 3 },
             },
             maxLength: 20,
             mandatory: true,
@@ -64,6 +64,7 @@ export const x_146833_jevnowint_field_map = Table({
         u_active: BooleanColumn({
             label: 'Active',
             default: true,
+            maxLength: 40,
         }),
     },
 })
