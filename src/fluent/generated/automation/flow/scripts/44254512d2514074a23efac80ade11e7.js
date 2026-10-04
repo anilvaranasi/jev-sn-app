@@ -10,8 +10,8 @@
     gr.setValue('u_state', 'processing');
     gr.update();
 
-    var apiKey = gs.getProperty('x_146833_jevnowint.api_key', '');
-    var apiUrl = gs.getProperty('x_146833_jevnowint.api_url', 'https://api.typesafe.ai/v1/systemone');
+    var apiKey = gs.getProperty('x_146833_jevnowint.beatapikey', '');
+    var apiUrl = gs.getProperty('x_146833_jevnowint.beatjevapi_endpoint', 'https://api.beatapi.io/v1/systemone');
 
     var payload = JSON.stringify({
         state:     gr.getValue('u_state_text'),
