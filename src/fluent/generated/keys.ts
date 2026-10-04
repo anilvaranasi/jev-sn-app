@@ -29,7 +29,7 @@ declare global {
                     '336a80e8ec6f4878995c784c602447e6': {
                         table: 'sys_properties'
                         id: '336a80e8ec6f4878995c784c602447e6'
-                        deleted: true
+                        deleted: false
                     }
                     '346364f9d8ff49a7858a5d2a6b74e03c': {
                         table: 'sys_script'
@@ -51,7 +51,7 @@ declare global {
                     '432c8f92f78d4b88b4a4ed937f44e543': {
                         table: 'sys_properties'
                         id: '432c8f92f78d4b88b4a4ed937f44e543'
-                        deleted: true
+                        deleted: false
                     }
                     '44254512d2514074a23efac80ade11e7': {
                         table: 'sys_hub_step_instance'
@@ -124,6 +124,10 @@ declare global {
                     d632ee1483bb4710b96f6ed0deaad31a: {
                         table: 'sys_alias'
                         id: 'd632ee1483bb4710b96f6ed0deaad31a'
+                    }
+                    db003cec83bf8710b96f6ed0deaad3f1: {
+                        table: 'sys_script_include'
+                        id: 'db003cec83bf8710b96f6ed0deaad3f1'
                     }
                     e36b76d083bf4710b96f6ed0deaad393: {
                         table: 'sys_hub_flow_logic_instance_v2'
