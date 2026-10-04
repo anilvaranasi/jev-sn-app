@@ -8,7 +8,7 @@ export const x_146833_jevnowint_request = Table({
         create: false,
     },
     allowClientScripts: false,
-    allowNewFields: false,
+    allowNewFields: true,
     allowUiActions: false,
     allowWebServiceAccess: true,
     attributes: {},
