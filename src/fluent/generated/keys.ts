@@ -1509,7 +1509,7 @@ declare global {
                     {
                         table: 'sys_documentation'
                         id: 'bc42a774fc0e4b86b2815df008e567a8'
-                        deleted: true
+                        deleted: false
                         key: {
                             name: 'x_146833_jevnowint_request'
                             element: 'test_column'
