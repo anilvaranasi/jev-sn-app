@@ -1,4 +1,4 @@
-import { Table, StringColumn, IntegerColumn, ChoiceColumn, DecimalColumn } from '@servicenow/sdk/core'
+import { Table, StringColumn, IntegerColumn, ChoiceColumn } from '@servicenow/sdk/core'
 
 export const x_146833_jevnowint_request = Table({
     actions: {
@@ -69,25 +69,13 @@ export const x_146833_jevnowint_request = Table({
             label: 'Caller Context',
             maxLength: 200,
         }),
-        u_task_id: StringColumn({
-            label: 'Task ID',
+        u_jev_id: StringColumn({
+            label: 'Jev ID',
             maxLength: 60,
         }),
-        u_is_urgent_noul: DecimalColumn({
-            label: 'Is Urgent (Noul)',
-        }),
-        u_department_choice: StringColumn({
-            label: 'Department Choice',
-            maxLength: 80,
-        }),
-        u_department_confidence: DecimalColumn({
-            label: 'Department Confidence',
-        }),
-        u_severity_score: IntegerColumn({
-            label: 'Severity Score',
-        }),
-        u_severity_confidence: DecimalColumn({
-            label: 'Severity Confidence',
+        u_result: StringColumn({
+            label: 'Result',
+            maxLength: 4000,
         }),
     },
 })

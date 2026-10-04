@@ -1,5 +1,15 @@
 # JevNowIntegration — Setup & Replication Guide
 
+## Proof of Concept — Flow Test Run
+
+The screenshot below shows `TriggerJevIntegration` flow test run completing successfully.
+`InvokeJevRESTAPI` action received the `RequestBody` built from the request record and
+returned the `response_body` with answers (department: database, confidence: 0.74).
+
+![Flow test run completed](docs/images/flow-test-run.png)
+
+---
+
 **GitHub repo:** https://github.com/anilvaranasi/jev-sn-app  
 **Scoped app:** `x_146833_jevnowint` | `JevNowIntegration`  
 **SDK:** `@servicenow/sdk` 4.13.0  
