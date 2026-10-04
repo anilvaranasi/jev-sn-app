@@ -1,4 +1,4 @@
-import { Table, StringColumn, IntegerColumn, ChoiceColumn, DecimalColumn } from '@servicenow/sdk/core'
+import { Table, StringColumn, IntegerColumn, ChoiceColumn } from '@servicenow/sdk/core'
 
 export const x_146833_jevnowint_request = Table({
     actions: {
@@ -19,10 +19,10 @@ export const x_146833_jevnowint_request = Table({
             label: 'State',
             default: 'pending',
             choices: {
-                pending: { label: 'Pending', sequence: 1 },
+                pending:    { label: 'Pending',    sequence: 1 },
                 processing: { label: 'Processing', sequence: 2 },
-                processed: { label: 'Processed', sequence: 3 },
-                failed: { label: 'Failed', sequence: 4 },
+                processed:  { label: 'Processed',  sequence: 3 },
+                failed:     { label: 'Failed',     sequence: 4 },
             },
             maxLength: 40,
         }),
@@ -36,7 +36,7 @@ export const x_146833_jevnowint_request = Table({
         }),
         u_model: StringColumn({
             label: 'Model',
-            default: 'jev-latest',
+            default: 'jev-1.13-free',
             maxLength: 40,
         }),
         u_answers: StringColumn({
@@ -49,11 +49,9 @@ export const x_146833_jevnowint_request = Table({
         }),
         u_input_tokens: IntegerColumn({
             label: 'Input Tokens',
-            maxLength: 40,
         }),
         u_output_tokens: IntegerColumn({
             label: 'Output Tokens',
-            maxLength: 40,
         }),
         u_error: StringColumn({
             label: 'Error',
@@ -73,30 +71,11 @@ export const x_146833_jevnowint_request = Table({
         }),
         u_jev_id: StringColumn({
             label: 'Jev ID',
-            maxLength: 60,
+            maxLength: 50,
         }),
         u_result: StringColumn({
             label: 'Result',
             maxLength: 4000,
-        }),
-        u_severity_score: IntegerColumn({
-            maxLength: 40,
-        }),
-        u_severity_confidence: DecimalColumn({
-            maxLength: 15,
-        }),
-        u_task_id: StringColumn({
-            maxLength: 60,
-        }),
-        u_is_urgent_noul: DecimalColumn({
-            label: 'Is Urgent (Noul)',
-            maxLength: 15,
-        }),
-        u_department_choice: StringColumn({
-            maxLength: 80,
-        }),
-        u_department_confidence: DecimalColumn({
-            maxLength: 15,
         }),
     },
 })
