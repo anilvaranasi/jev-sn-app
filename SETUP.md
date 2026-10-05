@@ -1,9 +1,50 @@
 # JevNowIntegration — Setup & Replication Guide
 
-**GitHub repo:** https://github.com/anilvaranasi/jev-sn-app  
-**Scoped app:** `x_146833_jevnowint` | `JevNowIntegration`  
-**SDK:** `@servicenow/sdk` 4.13.0  
+**GitHub repo:** https://github.com/anilvaranasi/jev-sn-app
+**Scoped app:** `x_146833_jevnowint` | `JevNowIntegration`
+**SDK:** `@servicenow/sdk` 4.13.0
 **Jev API:** `https://api.beatapi.io/v1/systemone` | Model: `jev-1.13-free`
+
+---
+
+## Proof of Concept — End-to-end test result
+
+### Source incident — INC0010048
+
+![Incident INC0010048](docs/images/incident-inc0010048.png)
+
+The incident has **Impact: 2 - Medium**, **Urgency: 2 - Medium**, **Priority: 3 - Moderate**
+with no business service assigned. The BR on `x_146833_jevnowint_request` reads this record,
+builds the questions from the field map config, and the flow submits them to Jev.
+
+### Processed Jev Request — JevReq0001016
+
+![Processed Jev Request — JevReq0001016](docs/images/jev-request-processed.png)
+
+| Field | Value | Notes |
+|---|---|---|
+| **State** | Processed | Full cycle completed successfully |
+| **Model** | `jev-1.13-free` | Free tier model |
+| **Input / Output Tokens** | 661 / 156 | Efficient — structured state + 3 questions |
+| **Jev ID** | `task_dx5COsnAMmYwAay...` | Unique task ID from BeatAPI |
+| **Jev Result** | `{"urgency":"2 - Medium","impact":"2 - Medium","business_service":"Corporate Network"}` | Clean flat summary |
+| **Error** | Success | |
+
+**Answers (JSON) breakdown:**
+
+| Question | Answer | Confidence | Probabilities |
+|---|---|---|---|
+| `urgency` | `2 - Medium` | 0.85 | 2-Medium: 0.90, 1-High: 0.10, 3-Low: 0.0 |
+| `impact` | `2 - Medium` | 0.96 | 2-Medium: 0.97, 1-High: 0.03, 3-Low: 0.0 |
+| `business_service` | `Corporate Network` | 0.98 | Corporate Network: 0.98, others: ~0.0 |
+
+Jev correctly identified **Corporate Network** as the affected service (98% confidence)
+and assessed both impact and urgency as **Medium** — consistent with a Wi-Fi issue that
+has a workaround (wired ethernet) but disrupts external client meetings.
+
+> **Note on `business_service`:** the incident had no service assigned in SN, yet Jev
+> inferred **Corporate Network** from the description alone — "Wi-Fi drops", "VPN", "wired ethernet".
+> This demonstrates Jev reasoning over unstructured text, not just structured field values.
 
 ---
 
