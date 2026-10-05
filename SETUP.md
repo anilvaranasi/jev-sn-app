@@ -247,8 +247,13 @@ Configure under **repo → Settings → Secrets and variables → Actions**:
 | `SN_PROD_USER` | ServiceNow PROD admin username |
 | `SN_PROD_PASS` | ServiceNow PROD admin password |
 
-Secrets are scoped to GitHub environments — `dev` and `production`.  
+Secrets are scoped to GitHub environments — `dev` and `production`.
 Create environments under **repo → Settings → Environments** before adding secrets.
+
+> ⚠️ Environment names are **case-sensitive** and must match the `environment:` key in
+> `deploy.yml` exactly — `dev` and `production` (all lowercase). A mismatch means secrets
+> resolve to empty strings and the `now-sdk auth` command fails with
+> `Missing required argument for --add`.
 
 ---
 
@@ -335,6 +340,87 @@ git merge nowdev --no-ff -m "merge: <description>"
 git push origin prod
 git checkout mydev
 ```
+
+### After deploying to a new PROD instance — post-deploy steps
+
+The `JevBeatAPI` connection alias is deployed automatically (alias shell only).
+The credential and connection URL must be set manually in each instance:
+
+1. Navigate to **Connections & Credentials → Connection & Credential Aliases → JevBeatAPI**
+2. **Credentials tab → New**
+   - Type: `HTTP Header`
+   - Name: `JevBeatAPI Key`
+   - Attribute name: `Authorization`
+   - Attribute value: `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx` (your API key from https://console.typesafe.ai)
+3. **Connections tab → New**
+   - Name: `JevBeatAPI Endpoint`
+   - Connection URL: `https://api.beatapi.io/v1/systemone`
+   - Credential: select `JevBeatAPI Key` from above
+4. Save — the `InvokeJevRESTAPI` action picks it up automatically
+
+> The Bearer token is **never in the repo** — set it directly in each instance.
+
+---
+
+## Code Promotion — mydev → nowdev → prod
+
+This is the full promotion sequence used to take changes from development through to production.
+
+### Prerequisites
+- GitHub environments `dev` and `production` exist under **repo → Settings → Environments**
+- All 6 secrets are set in the correct environments (see GitHub Actions secrets section)
+- `mydev` is clean and all SN changes have been pulled
+
+### Step 1 — Pull latest from SN DEV into mydev
+
+```bash
+# Trigger via GitHub Actions (preferred)
+# GitHub → Actions → Pull from ServiceNow → Run workflow → branch: mydev
+
+# Then sync locally
+git pull --rebase origin mydev
+```
+
+### Step 2 — Deploy to SN DEV (mydev → nowdev)
+
+```bash
+git checkout nowdev
+git merge mydev --no-ff -m "merge: <description of changes>"
+git push origin nowdev
+git checkout mydev
+```
+
+GitHub Actions `deploy.yml` triggers automatically → **Build → Deploy → DEV Instance**.
+
+### Step 3 — Verify in SN DEV
+
+- Confirm tables, flows, script includes, BRs are as expected
+- Run any fix scripts needed (seed data, label fixes, etc.)
+- Test end-to-end by creating a `x_146833_jevnowint_request` record
+
+### Step 4 — Deploy to SN PROD (nowdev → prod)
+
+```bash
+git checkout prod
+git merge nowdev --no-ff -m "merge: promote to prod — <description>"
+git push origin prod
+git checkout mydev
+```
+
+GitHub Actions `deploy.yml` triggers automatically → **Build → Deploy → PROD Instance**.
+
+### Step 5 — Post-deploy PROD setup (first time only)
+
+If this is the first deploy to a PROD instance, set up the connection alias manually (see section above).
+
+### Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `Missing required argument for --add` | `SN_PROD_INSTANCE` secret is empty | Check secrets are in the `production` environment (not `Prod` or `PROD`) |
+| `Deploy → PROD Instance` skipped | Workflow triggered by `nowdev` not `prod` | Push to `prod` branch, not `nowdev` |
+| Job shows "Waiting for review" | `production` environment has protection rules | Approve the deployment in GitHub → Actions → the run |
+| Re-run needed after fixing secrets | Secrets were missing when job ran | GitHub → Actions → failed run → Re-run failed jobs |
 
 ---
 
