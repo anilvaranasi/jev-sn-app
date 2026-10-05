@@ -36,7 +36,7 @@ export const x_146833_jevnowint_request = Table({
         }),
         u_model: StringColumn({
             label: 'Model',
-            default: 'jev-latest',
+            default: 'jev-1.13-free',
             maxLength: 40,
         }),
         u_answers: StringColumn({
