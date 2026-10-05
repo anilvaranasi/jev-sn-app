@@ -267,41 +267,68 @@ external service credentials securely.
 
 | Field | Value |
 |---|---|
-| **Name** | `JevBeatAPI` |
-| **Alias** | `x_146833_jevnowint.JevBeatAPI` |
+| **Alias name** | `JevBeatAPIConnection` |
+| **Alias ID** | `x_146833_jevnowint.JevBeatAPIConnection` |
 | **Connection URL** | `https://api.beatapi.io/v1/systemone` |
-| **Type** | HTTP Header-based credential |
+| **Credential name** | `JevBeatAPI` |
+| **Credential type** | `api_key` (Authorization header) |
 
-### Credential configuration
+### SN export files (reference)
 
-The credential attached to the alias must have:
+Three SN XML exports are stored in `docs/sn-exports/` for reference and manual import:
 
-| Field | Value |
+| File | What it is |
 |---|---|
-| **Header name** | `Authorization` |
-| **Header value** | `Bearer <your-api-key>` |
+| `sys_alias_ec27b76c83fb0b10b96f6ed0deaad3f5.xml` | Connection alias record (`JevBeatAPIConnection`) |
+| `http_connection_c71773ec83fb0b10b96f6ed0deaad329.xml` | HTTP connection record (`JevBeatAPIUrl`) with the endpoint URL |
+| `api_key_credentials_5e2b629883fb4710b96f6ed0deaad32f.xml` | API key credential record (`JevBeatAPI`) — **api_key field is masked** |
 
-Where `<your-api-key>` is your TypeSafe Jev API key in the format `sk-...`.
+> ⚠️ The `api_key` field in the credentials XML is set to `MASKED_SET_MANUALLY`.
+> You must update it with your real Bearer token after importing (see steps below).
 
-### How to set it up on a new instance
+### How to set it up on a new instance — Option A: XML import
+
+Use this approach when the app deploy did not create the alias, or when setting up a fresh instance manually.
+
+1. Navigate to **System Import Sets → Load Data** (or use **System Update Sets → Import XML**)
+2. Import in this order:
+   1. `docs/sn-exports/sys_alias_ec27b76c83fb0b10b96f6ed0deaad3f5.xml` — creates the alias record
+   2. `docs/sn-exports/api_key_credentials_5e2b629883fb4710b96f6ed0deaad32f.xml` — creates the credential record (key is masked)
+   3. `docs/sn-exports/http_connection_c71773ec83fb0b10b96f6ed0deaad329.xml` — creates the connection record linking alias + credential + URL
+3. After import, update the API key (see **Update the API key** below)
+
+![Connection alias record after import](docs/images/ConnectionAlias.png)
+
+### How to set it up on a new instance — Option B: Manual creation
 
 1. Navigate to **Connections & Credentials → Connection & Credential Aliases**
-2. Find `JevBeatAPI` (deployed by the app) or create it if missing:
-   - **Name:** `JevBeatAPI`
-   - **Type:** `Connection and Credential`
+2. Find `JevBeatAPIConnection` (deployed by the app) or create it:
+   - **Name:** `JevBeatAPIConnection`
+   - **Type:** `Connection`
 3. Open the alias → **Credentials** tab → **New**:
-   - **Type:** `HTTP Header`
-   - **Name:** `JevBeatAPI Key`
-   - Add attribute:
-     - **Name:** `Authorization`
-     - **Value:** `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
+   - **Type:** `API Key`
+   - **Name:** `JevBeatAPI`
+   - **API key header name:** `Authorization`
+   - **API key:** `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
 4. Open the alias → **Connections** tab → **New**:
-   - **Name:** `JevBeatAPI Endpoint`
+   - **Name:** `JevBeatAPIUrl`
    - **Connection URL:** `https://api.beatapi.io/v1/systemone`
-   - **Credential:** select the credential created above
+   - **Credential:** select `JevBeatAPI` from above
 5. Save — the `InvokeJevRESTAPI` action uses this alias automatically
 
-> ⚠️ The credential value (Bearer token) is **never committed to the repo**.
+### Update the API key
+
+After XML import (Option A), the credential record has a masked placeholder. Update it:
+
+1. Navigate to **Connections & Credentials → Credentials**
+2. Open **JevBeatAPI**
+3. In the **API key** field enter: `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
+   (replace with your real key from [https://console.typesafe.ai](https://console.typesafe.ai))
+4. Save
+
+![API key credentials record with key set](docs/images/APIKeyCredentials.png)
+
+> ⚠️ The real Bearer token is **never committed to the repo**.
 > Set it directly in each SN instance (DEV and PROD separately).
 
 ---
@@ -343,20 +370,21 @@ git checkout mydev
 
 ### After deploying to a new PROD instance — post-deploy steps
 
-The `JevBeatAPI` connection alias is deployed automatically (alias shell only).
-The credential and connection URL must be set manually in each instance:
+The `JevBeatAPIConnection` alias shell is deployed automatically by the app.
+The credential and connection URL must be set manually. Two options:
 
-1. Navigate to **Connections & Credentials → Connection & Credential Aliases → JevBeatAPI**
-2. **Credentials tab → New**
-   - Type: `HTTP Header`
-   - Name: `JevBeatAPI Key`
-   - Attribute name: `Authorization`
-   - Attribute value: `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx` (your API key from https://console.typesafe.ai)
-3. **Connections tab → New**
-   - Name: `JevBeatAPI Endpoint`
-   - Connection URL: `https://api.beatapi.io/v1/systemone`
-   - Credential: select `JevBeatAPI Key` from above
-4. Save — the `InvokeJevRESTAPI` action picks it up automatically
+**Option A — XML import (fastest):**
+1. Go to **System Update Sets → Import XML** (or **System Import Sets → Load Data**)
+2. Import in order:
+   1. `docs/sn-exports/sys_alias_ec27b76c83fb0b10b96f6ed0deaad3f5.xml`
+   2. `docs/sn-exports/api_key_credentials_5e2b629883fb4710b96f6ed0deaad32f.xml`
+   3. `docs/sn-exports/http_connection_c71773ec83fb0b10b96f6ed0deaad329.xml`
+3. Open **Connections & Credentials → Credentials → JevBeatAPI**
+4. Set **API key** to `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx` (your key from https://console.typesafe.ai)
+5. Save
+
+**Option B — Manual:**
+See **BeatAPI Connection & Credential Alias → Option B: Manual creation** section above.
 
 > The Bearer token is **never in the repo** — set it directly in each instance.
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2026-10-05 07:59:57">
+<http_connection action="INSERT_OR_UPDATE">
+<active>true</active>
+<app_scope display_value="JevNowIntegration">61b08e848333c310b96f6ed0deaad31d</app_scope>
+<application display_value="ALL">35aa573fd7802200bdbaee5b5e610375</application>
+<base_path/>
+<capabilities/>
+<connection_alias display_value="x_146833_jevnowint.JevBeatAPIConnection">ec27b76c83fb0b10b96f6ed0deaad3f5</connection_alias>
+<connection_retries>0</connection_retries>
+<connection_timeout/>
+<connection_url>https://api.beatapi.io/v1/systemone</connection_url>
+<credential display_value="JevBeatAPI">5e2b629883fb4710b96f6ed0deaad32f</credential>
+<extended_attributes/>
+<host>api.beatapi.io</host>
+<is_internal>false</is_internal>
+<mid_cluster display_value=""/>
+<mid_protocol_profile display_value=""/>
+<mid_selection>auto_select</mid_selection>
+<mid_server display_value=""/>
+<mutual_auth>false</mutual_auth>
+<name>JevBeatAPIUrl</name>
+<order>100</order>
+<port/>
+<protocol>https</protocol>
+<protocol_profile display_value=""/>
+<sys_class_name>http_connection</sys_class_name>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2026-10-05 06:25:11</sys_created_on>
+<sys_domain>global</sys_domain>
+<sys_domain_path>/</sys_domain_path>
+<sys_id>c71773ec83fb0b10b96f6ed0deaad329</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2026-10-05 06:25:11</sys_updated_on>
+<url_builder>false</url_builder>
+<use_mid>false</use_mid>
+</http_connection>
+</unload>
