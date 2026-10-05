@@ -11,7 +11,7 @@
 
 ### Source incident — INC0010048
 
-![Incident INC0010048](docs/images/incident-inc0010048.png)
+![Incident INC0010048](docs/images/Incident.png)
 
 The incident has **Impact: 2 - Medium**, **Urgency: 2 - Medium**, **Priority: 3 - Moderate**
 with no business service assigned. The BR on `x_146833_jevnowint_request` reads this record,
@@ -19,7 +19,7 @@ builds the questions from the field map config, and the flow submits them to Jev
 
 ### Processed Jev Request — JevReq0001016
 
-![Processed Jev Request — JevReq0001016](docs/images/jev-request-processed.png)
+![Processed Jev Request — JevReq0001016](docs/images/JevRequest.png)
 
 | Field | Value | Notes |
 |---|---|---|
