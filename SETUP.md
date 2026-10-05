@@ -3,7 +3,9 @@
 **GitHub repo:** https://github.com/anilvaranasi/jev-sn-app
 **Scoped app:** `x_146833_jevnowint` | `JevNowIntegration`
 **SDK:** `@servicenow/sdk` 4.13.0
-**Jev API:** `https://api.beatapi.io/v1/systemone` | Model: `jev-1.13-free`
+**Jev API:** https://api.beatapi.io/v1/systemone | Model: `jev-1.13-free`
+**BeatAPI console:** https://console.typesafe.ai
+**Jev documentation:** https://docs.typesafe.ai
 
 ---
 
