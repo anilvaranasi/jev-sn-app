@@ -16,7 +16,7 @@ export const x_146833_jevnowint_request = Table({
     name: 'x_146833_jevnowint_request',
     schema: {
         u_state: ChoiceColumn({
-            label: [{ label: 'State', plural: '' }],
+            label: 'State',
             default: 'pending',
             choices: {
                 pending: { label: 'Pending', sequence: 1 },
@@ -27,47 +27,66 @@ export const x_146833_jevnowint_request = Table({
             maxLength: 40,
         }),
         u_state_text: StringColumn({
-            label: [{ label: 'State Text', plural: '' }],
+            label: 'State Text',
             maxLength: 4000,
         }),
         u_questions: StringColumn({
-            label: [{ label: 'Questions (JSON)', plural: '' }],
+            label: 'Questions (JSON)',
             maxLength: 4000,
         }),
         u_model: StringColumn({
-            label: [{ label: 'Model', plural: '' }],
+            label: 'Model',
             default: 'jev-latest',
             maxLength: 40,
         }),
         u_answers: StringColumn({
-            label: [{ label: 'Answers (JSON)', plural: '' }],
+            label: 'Answers (JSON)',
             maxLength: 4000,
         }),
         u_model_used: StringColumn({
-            label: [{ label: 'Model Used', plural: '' }],
+            label: 'Model Used',
             maxLength: 40,
         }),
         u_input_tokens: IntegerColumn({
-            label: [{ label: 'Input Tokens', plural: '' }],
+            label: 'Input Tokens',
+            maxLength: 40,
         }),
         u_output_tokens: IntegerColumn({
-            label: [{ label: 'Output Tokens', plural: '' }],
+            label: 'Output Tokens',
+            maxLength: 40,
         }),
         u_error: StringColumn({
-            label: [{ label: 'Error', plural: '' }],
+            label: 'Error',
             maxLength: 1000,
         }),
         u_caller_table: StringColumn({
-            label: [{ label: 'Caller Table', plural: '' }],
+            label: 'Caller Table',
             maxLength: 80,
         }),
         u_caller_sys_id: StringColumn({
-            label: [{ label: 'Caller Sys ID', plural: '' }],
+            label: 'Caller Sys ID',
             maxLength: 32,
         }),
         u_caller_context: StringColumn({
-            label: [{ label: 'Caller Context', plural: '' }],
+            label: 'Caller Context',
             maxLength: 200,
         }),
+        u_result_summary: StringColumn({
+            label: [
+                {
+                    label: 'u_result_summary',
+                    plural: '',
+                },
+            ],
+            maxLength: 500,
+        }),
+        number: StringColumn({
+            attributes: {},
+            default: 'javascript:global.getNextObjNumberPadded();',
+            maxLength: 40,
+        }),
+    },
+    autoNumber: {
+        prefix: 'JEV',
     },
 })
