@@ -48,6 +48,23 @@ has a workaround (wired ethernet) but disrupts external client meetings.
 > inferred **Corporate Network** from the description alone — "Wi-Fi drops", "VPN", "wired ethernet".
 > This demonstrates Jev reasoning over unstructured text, not just structured field values.
 
+### PROD verification — Flow execution
+
+After promoting to PROD, the same end-to-end cycle was confirmed working in the production instance.
+
+![TriggerJevIntegration flow execution in PROD](docs/images/ProdFlowExecution.png)
+
+The flow ran successfully in PROD — all steps completed, REST call to BeatAPI returned `200 OK`,
+and the Jev answers were written back to the request record.
+
+### PROD verification — Jev Request result
+
+![Processed Jev Request in PROD](docs/images/ProdJevRequestAndResponse.png)
+
+The PROD Jev Request record shows state **Processed**, `u_result_summary` populated with the
+structured answer map, and no errors — confirming the connection alias, credential, and flow
+all function correctly in the production instance.
+
 ---
 
 ## What this app does
@@ -440,6 +457,14 @@ GitHub Actions `deploy.yml` triggers automatically → **Build → Deploy → PR
 ### Step 5 — Post-deploy PROD setup (first time only)
 
 If this is the first deploy to a PROD instance, set up the connection alias manually (see section above).
+
+![GitHub Actions PROD deployment succeeded](docs/images/ProdDeployment.png)
+
+Once the deploy job completes, verify end-to-end in PROD:
+
+![TriggerJevIntegration flow execution in PROD](docs/images/ProdFlowExecution.png)
+
+![Processed Jev Request and response in PROD](docs/images/ProdJevRequestAndResponse.png)
 
 ### Troubleshooting
 
