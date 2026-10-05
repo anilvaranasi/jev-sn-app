@@ -48,6 +48,23 @@ has a workaround (wired ethernet) but disrupts external client meetings.
 > inferred **Corporate Network** from the description alone — "Wi-Fi drops", "VPN", "wired ethernet".
 > This demonstrates Jev reasoning over unstructured text, not just structured field values.
 
+### PROD verification — Flow execution
+
+After promoting to PROD, the same end-to-end cycle was confirmed working in the production instance.
+
+![TriggerJevIntegration flow execution in PROD](docs/images/ProdFlowExecution.png)
+
+The flow ran successfully in PROD — all steps completed, REST call to BeatAPI returned `200 OK`,
+and the Jev answers were written back to the request record.
+
+### PROD verification — Jev Request result
+
+![Processed Jev Request in PROD](docs/images/ProdJevRequestAndResponse.png)
+
+The PROD Jev Request record shows state **Processed**, `u_result_summary` populated with the
+structured answer map, and no errors — confirming the connection alias, credential, and flow
+all function correctly in the production instance.
+
 ---
 
 ## What this app does
@@ -247,8 +264,13 @@ Configure under **repo → Settings → Secrets and variables → Actions**:
 | `SN_PROD_USER` | ServiceNow PROD admin username |
 | `SN_PROD_PASS` | ServiceNow PROD admin password |
 
-Secrets are scoped to GitHub environments — `dev` and `production`.  
+Secrets are scoped to GitHub environments — `dev` and `production`.
 Create environments under **repo → Settings → Environments** before adding secrets.
+
+> ⚠️ Environment names are **case-sensitive** and must match the `environment:` key in
+> `deploy.yml` exactly — `dev` and `production` (all lowercase). A mismatch means secrets
+> resolve to empty strings and the `now-sdk auth` command fails with
+> `Missing required argument for --add`.
 
 ---
 
@@ -262,41 +284,68 @@ external service credentials securely.
 
 | Field | Value |
 |---|---|
-| **Name** | `JevBeatAPI` |
-| **Alias** | `x_146833_jevnowint.JevBeatAPI` |
+| **Alias name** | `JevBeatAPIConnection` |
+| **Alias ID** | `x_146833_jevnowint.JevBeatAPIConnection` |
 | **Connection URL** | `https://api.beatapi.io/v1/systemone` |
-| **Type** | HTTP Header-based credential |
+| **Credential name** | `JevBeatAPI` |
+| **Credential type** | `api_key` (Authorization header) |
 
-### Credential configuration
+### SN export files (reference)
 
-The credential attached to the alias must have:
+Three SN XML exports are stored in `docs/sn-exports/` for reference and manual import:
 
-| Field | Value |
+| File | What it is |
 |---|---|
-| **Header name** | `Authorization` |
-| **Header value** | `Bearer <your-api-key>` |
+| `sys_alias_ec27b76c83fb0b10b96f6ed0deaad3f5.xml` | Connection alias record (`JevBeatAPIConnection`) |
+| `http_connection_c71773ec83fb0b10b96f6ed0deaad329.xml` | HTTP connection record (`JevBeatAPIUrl`) with the endpoint URL |
+| `api_key_credentials_5e2b629883fb4710b96f6ed0deaad32f.xml` | API key credential record (`JevBeatAPI`) — **api_key field is masked** |
 
-Where `<your-api-key>` is your TypeSafe Jev API key in the format `sk-...`.
+> ⚠️ The `api_key` field in the credentials XML is set to `MASKED_SET_MANUALLY`.
+> You must update it with your real Bearer token after importing (see steps below).
 
-### How to set it up on a new instance
+### How to set it up on a new instance — Option A: XML import
+
+Use this approach when the app deploy did not create the alias, or when setting up a fresh instance manually.
+
+1. Navigate to **System Import Sets → Load Data** (or use **System Update Sets → Import XML**)
+2. Import in this order:
+   1. `docs/sn-exports/sys_alias_ec27b76c83fb0b10b96f6ed0deaad3f5.xml` — creates the alias record
+   2. `docs/sn-exports/api_key_credentials_5e2b629883fb4710b96f6ed0deaad32f.xml` — creates the credential record (key is masked)
+   3. `docs/sn-exports/http_connection_c71773ec83fb0b10b96f6ed0deaad329.xml` — creates the connection record linking alias + credential + URL
+3. After import, update the API key (see **Update the API key** below)
+
+![Connection alias record after import](docs/images/ConnectionAlias.png)
+
+### How to set it up on a new instance — Option B: Manual creation
 
 1. Navigate to **Connections & Credentials → Connection & Credential Aliases**
-2. Find `JevBeatAPI` (deployed by the app) or create it if missing:
-   - **Name:** `JevBeatAPI`
-   - **Type:** `Connection and Credential`
+2. Find `JevBeatAPIConnection` (deployed by the app) or create it:
+   - **Name:** `JevBeatAPIConnection`
+   - **Type:** `Connection`
 3. Open the alias → **Credentials** tab → **New**:
-   - **Type:** `HTTP Header`
-   - **Name:** `JevBeatAPI Key`
-   - Add attribute:
-     - **Name:** `Authorization`
-     - **Value:** `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
+   - **Type:** `API Key`
+   - **Name:** `JevBeatAPI`
+   - **API key header name:** `Authorization`
+   - **API key:** `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
 4. Open the alias → **Connections** tab → **New**:
-   - **Name:** `JevBeatAPI Endpoint`
+   - **Name:** `JevBeatAPIUrl`
    - **Connection URL:** `https://api.beatapi.io/v1/systemone`
-   - **Credential:** select the credential created above
+   - **Credential:** select `JevBeatAPI` from above
 5. Save — the `InvokeJevRESTAPI` action uses this alias automatically
 
-> ⚠️ The credential value (Bearer token) is **never committed to the repo**.
+### Update the API key
+
+After XML import (Option A), the credential record has a masked placeholder. Update it:
+
+1. Navigate to **Connections & Credentials → Credentials**
+2. Open **JevBeatAPI**
+3. In the **API key** field enter: `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
+   (replace with your real key from [https://console.typesafe.ai](https://console.typesafe.ai))
+4. Save
+
+![API key credentials record with key set](docs/images/APIKeyCredentials.png)
+
+> ⚠️ The real Bearer token is **never committed to the repo**.
 > Set it directly in each SN instance (DEV and PROD separately).
 
 ---
@@ -335,6 +384,96 @@ git merge nowdev --no-ff -m "merge: <description>"
 git push origin prod
 git checkout mydev
 ```
+
+### After deploying to a new PROD instance — post-deploy steps
+
+The `JevBeatAPIConnection` alias shell is deployed automatically by the app.
+The credential and connection URL must be set manually. Two options:
+
+**Option A — XML import (fastest):**
+1. Go to **System Update Sets → Import XML** (or **System Import Sets → Load Data**)
+2. Import in order:
+   1. `docs/sn-exports/sys_alias_ec27b76c83fb0b10b96f6ed0deaad3f5.xml`
+   2. `docs/sn-exports/api_key_credentials_5e2b629883fb4710b96f6ed0deaad32f.xml`
+   3. `docs/sn-exports/http_connection_c71773ec83fb0b10b96f6ed0deaad329.xml`
+3. Open **Connections & Credentials → Credentials → JevBeatAPI**
+4. Set **API key** to `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx` (your key from https://console.typesafe.ai)
+5. Save
+
+**Option B — Manual:**
+See **BeatAPI Connection & Credential Alias → Option B: Manual creation** section above.
+
+> The Bearer token is **never in the repo** — set it directly in each instance.
+
+---
+
+## Code Promotion — mydev → nowdev → prod
+
+This is the full promotion sequence used to take changes from development through to production.
+
+### Prerequisites
+- GitHub environments `dev` and `production` exist under **repo → Settings → Environments**
+- All 6 secrets are set in the correct environments (see GitHub Actions secrets section)
+- `mydev` is clean and all SN changes have been pulled
+
+### Step 1 — Pull latest from SN DEV into mydev
+
+```bash
+# Trigger via GitHub Actions (preferred)
+# GitHub → Actions → Pull from ServiceNow → Run workflow → branch: mydev
+
+# Then sync locally
+git pull --rebase origin mydev
+```
+
+### Step 2 — Deploy to SN DEV (mydev → nowdev)
+
+```bash
+git checkout nowdev
+git merge mydev --no-ff -m "merge: <description of changes>"
+git push origin nowdev
+git checkout mydev
+```
+
+GitHub Actions `deploy.yml` triggers automatically → **Build → Deploy → DEV Instance**.
+
+### Step 3 — Verify in SN DEV
+
+- Confirm tables, flows, script includes, BRs are as expected
+- Run any fix scripts needed (seed data, label fixes, etc.)
+- Test end-to-end by creating a `x_146833_jevnowint_request` record
+
+### Step 4 — Deploy to SN PROD (nowdev → prod)
+
+```bash
+git checkout prod
+git merge nowdev --no-ff -m "merge: promote to prod — <description>"
+git push origin prod
+git checkout mydev
+```
+
+GitHub Actions `deploy.yml` triggers automatically → **Build → Deploy → PROD Instance**.
+
+### Step 5 — Post-deploy PROD setup (first time only)
+
+If this is the first deploy to a PROD instance, set up the connection alias manually (see section above).
+
+![GitHub Actions PROD deployment succeeded](docs/images/ProdDeployment.png)
+
+Once the deploy job completes, verify end-to-end in PROD:
+
+![TriggerJevIntegration flow execution in PROD](docs/images/ProdFlowExecution.png)
+
+![Processed Jev Request and response in PROD](docs/images/ProdJevRequestAndResponse.png)
+
+### Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `Missing required argument for --add` | `SN_PROD_INSTANCE` secret is empty | Check secrets are in the `production` environment (not `Prod` or `PROD`) |
+| `Deploy → PROD Instance` skipped | Workflow triggered by `nowdev` not `prod` | Push to `prod` branch, not `nowdev` |
+| Job shows "Waiting for review" | `production` environment has protection rules | Approve the deployment in GitHub → Actions → the run |
+| Re-run needed after fixing secrets | Secrets were missing when job ran | GitHub → Actions → failed run → Re-run failed jobs |
 
 ---
 
