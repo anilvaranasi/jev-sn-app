@@ -219,3 +219,12 @@ Record({
         type: '.end_split',
     },
 })
+Record({
+    $id: Now.ID['24aacda083f3c710b96f6ed0deaad3c6'],
+    table: 'sys_ui_element',
+    data: {
+        element: 'u_result_summary',
+        position: 22,
+        sys_ui_section: '6294089483f30710b96f6ed0deaad304',
+    },
+})

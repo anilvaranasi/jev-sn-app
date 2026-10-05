@@ -40,9 +40,9 @@ var ROWS = [
     {
         u_source_table: 'incident',
         u_source_field: 'business_service',
-        u_jev_type:     'noul',
-        u_choices:      '',
-        u_question:     'Is a critical business service affected by this incident?',
+        u_jev_type:     'choice',
+        u_choices:      JSON.stringify(['e-Commerce Platform','Payment Processing','HR Management','Corporate Network','Data & Analytics','none']),
+        u_question:     'Which business service is most affected by this incident?',
         u_active:       true
     }
 ];

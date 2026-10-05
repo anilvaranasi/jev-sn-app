@@ -51,6 +51,7 @@ while (incGr.next()) {
     jr.setValue('u_caller_sys_id',  incSysId);
     jr.setValue('u_caller_context', incNum + ' - ' + (incGr.getValue('short_description') || '').substring(0, 150));
     jr.setValue('u_state',          'pending');
+	jr.setValue('u_model',          'jev-1.13-free');
     // u_questions and u_state_text will be auto-populated by the BR before insert
     jr.insert();
 

@@ -1,4 +1,4 @@
-import { Table, StringColumn, IntegerColumn, ChoiceColumn, DecimalColumn } from '@servicenow/sdk/core'
+import { Table, StringColumn, IntegerColumn, ChoiceColumn } from '@servicenow/sdk/core'
 
 export const x_146833_jevnowint_request = Table({
     actions: {
@@ -71,41 +71,17 @@ export const x_146833_jevnowint_request = Table({
             label: 'Caller Context',
             maxLength: 200,
         }),
-        u_jev_id: StringColumn({
-            label: 'Jev ID',
-            maxLength: 50,
-        }),
-        u_result: StringColumn({
-            label: 'Result',
-            maxLength: 4000,
-        }),
         u_result_summary: StringColumn({
-            label: 'Result Summary (JSON)',
-            maxLength: 4000,
-        }),
-        u_severity_score: IntegerColumn({
-            maxLength: 40,
-        }),
-        u_severity_confidence: DecimalColumn({
-            maxLength: 15,
-        }),
-        u_task_id: StringColumn({
-            maxLength: 60,
-        }),
-        u_is_urgent_noul: DecimalColumn({
-            label: 'Is Urgent (Noul)',
-            maxLength: 15,
-        }),
-        u_department_choice: StringColumn({
-            maxLength: 80,
-        }),
-        u_department_confidence: DecimalColumn({
-            maxLength: 15,
+            label: [
+                {
+                    label: 'u_result_summary',
+                    plural: '',
+                },
+            ],
+            maxLength: 500,
         }),
         number: StringColumn({
-            attributes: {
-                ignore_filter_on_new: true,
-            },
+            attributes: {},
             default: 'javascript:global.getNextObjNumberPadded();',
             maxLength: 40,
         }),

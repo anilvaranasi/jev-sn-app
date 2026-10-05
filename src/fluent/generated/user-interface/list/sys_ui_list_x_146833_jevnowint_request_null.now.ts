@@ -9,6 +9,7 @@ List({
         'u_caller_table',
         'u_caller_context',
         'u_model',
+        'sys_created_on',
         'u_state',
         'u_state_text',
         'u_input_tokens',
