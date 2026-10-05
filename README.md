@@ -14,23 +14,26 @@ mydev  →  (PR)  →  nowdev  →  GitHub Actions deploys to DEV instance
 
 ```
 jev-sn-app/
-├── now.config.js           # App config (scope, name, instance)
-├── now.config.json         # scope + scopeId for the SDK
-├── package.json            # @servicenow/sdk deps + build/deploy scripts
+├── now.config.js           # App config (scope, name, vendor, instance)
+├── now.config.json         # Scope + scopeId for the ServiceNow SDK
+├── package.json            # @servicenow/sdk dependencies & build scripts
 ├── .env.example            # Credentials template (copy to app.env locally)
+├── SETUP.md                # Comprehensive setup and deployment guide
+├── docs/                   # Documentation, screenshots & XML exports
 │
 ├── src/
 │   ├── fluent/
-│   │   ├── jev.now.ts              # Fluent declarations: ScriptIncludes + BusinessRule
-│   │   └── generated/keys.ts      # sys_ids (auto-updated by SDK after first deploy)
+│   │   └── generated/      # Fluent TypeScript definitions & SDK key maps
 │   └── server/
-│       ├── JevClient.server.js     # Fluent HTTP client — .withState().ask().evaluate()
-│       ├── JevQuestions.server.js  # Choice / Noul / Score question builders
-│       └── JevIncidentDemo.server.js # Business rule logic — incident enrichment
+│       ├── JevClient.server.js                 # Fluent HTTP client wrapper
+│       ├── JevQuestions.server.js              # Choice / Noul / Score question builders
+│       ├── JevIncidentDemo.server.js           # Business rule logic — incident enrichment
+│       ├── br_populate_questions_on_insert.js  # Pre-insert request builder
+│       └── br_populate_result_summary.js       # Post-process response handler
 │
 └── .github/workflows/
-    ├── pr-checks.yml   # Build + validate on PRs to nowdev / prod
-    └── deploy.yml      # Deploy to DEV (nowdev) or PROD (prod) on push
+    ├── deploy.yml          # CI/CD deployment to DEV and PROD
+    └── pull-from-sn.yml    # Manual sync workflow to pull changes from SN DEV
 ```
 
 ## Setup

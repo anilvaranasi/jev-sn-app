@@ -4,3 +4,8 @@ node_modules
 dist/
 src/server/JevApi.server.js
 
+
+*.env
+app.env
+.env
+
