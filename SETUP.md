@@ -209,6 +209,55 @@ Create environments under **repo → Settings → Environments** before adding s
 
 ---
 
+## BeatAPI Connection & Credential Alias
+
+The Jev API key and endpoint are **never stored in the repo**. They are configured in
+ServiceNow using a **Connection & Credential Alias** — the native SN way to manage
+external service credentials securely.
+
+### Alias details
+
+| Field | Value |
+|---|---|
+| **Name** | `JevBeatAPI` |
+| **Alias** | `x_146833_jevnowint.JevBeatAPI` |
+| **Connection URL** | `https://api.beatapi.io/v1/systemone` |
+| **Type** | HTTP Header-based credential |
+
+### Credential configuration
+
+The credential attached to the alias must have:
+
+| Field | Value |
+|---|---|
+| **Header name** | `Authorization` |
+| **Header value** | `Bearer <your-api-key>` |
+
+Where `<your-api-key>` is your TypeSafe Jev API key in the format `sk-...`.
+
+### How to set it up on a new instance
+
+1. Navigate to **Connections & Credentials → Connection & Credential Aliases**
+2. Find `JevBeatAPI` (deployed by the app) or create it if missing:
+   - **Name:** `JevBeatAPI`
+   - **Type:** `Connection and Credential`
+3. Open the alias → **Credentials** tab → **New**:
+   - **Type:** `HTTP Header`
+   - **Name:** `JevBeatAPI Key`
+   - Add attribute:
+     - **Name:** `Authorization`
+     - **Value:** `Bearer sk-xxxxxxxxxxxxxxxxxxxxxxxx`
+4. Open the alias → **Connections** tab → **New**:
+   - **Name:** `JevBeatAPI Endpoint`
+   - **Connection URL:** `https://api.beatapi.io/v1/systemone`
+   - **Credential:** select the credential created above
+5. Save — the `InvokeJevRESTAPI` action uses this alias automatically
+
+> ⚠️ The credential value (Bearer token) is **never committed to the repo**.
+> Set it directly in each SN instance (DEV and PROD separately).
+
+---
+
 ## GitHub Actions permissions
 
 Under **repo → Settings → Actions → General → Workflow permissions**:  
