@@ -356,6 +356,71 @@ npm run build   # verify build passes
 
 ---
 
+## Future Use Cases
+
+The `x_146833_jevnowint_field_map` config-driven architecture means extending Jev to any
+ServiceNow table requires only adding rows — no code changes. Below are planned use cases.
+
+### Change Management — Change Risk Assessment
+
+**Table:** `change_request`
+
+Jev evaluates each change request before approval to produce a structured risk profile.
+
+| Field | Jev Type | Question |
+|---|---|---|
+| `short_description` | noul | Does this change carry a high risk of service disruption? |
+| `type` | choice | What category of risk does this change represent? |
+| `risk` | score | How would you rate the overall risk level of this change? |
+| `u_affected_services` | noul | Are any critical production services affected by this change? |
+
+**Output used to:**
+- Auto-set `risk` and `risk_impact_analysis` fields on the change record
+- Flag changes above a risk threshold for CAB review
+- Suggest assignment group based on risk category
+
+---
+
+### IRM — Control Objectives & Entity Applicability
+
+**Table:** `sn_compliance_policy_statement` (or custom IRM table)
+
+Jev assesses whether a given control objective applies to a specific entity (system, vendor, process).
+
+| Field | Jev Type | Question |
+|---|---|---|
+| `short_description` | noul | Is this control objective applicable to the entity described in the state? |
+| `category` | choice | Which compliance domain does this control objective primarily belong to? |
+| `applicability` | score | How strongly does this control apply to the entity? |
+
+**Output used to:**
+- Auto-populate applicability assessments across large control libraries
+- Surface high-applicability controls for mandatory evidence collection
+- Flag ambiguous controls for human review based on low confidence scores
+
+---
+
+### SecOps — Vulnerability Threat Level & False Positive Validation
+
+**Table:** `sn_si_vulnerability` (or `sn_vul_vulnerable_item`)
+
+Jev assesses the real-world threat level of a vulnerability given the asset context, and
+validates whether an alert is a genuine threat or a false positive.
+
+| Field | Jev Type | Question |
+|---|---|---|
+| `short_description` | score | How severe is the actual threat posed by this vulnerability in context? |
+| `severity` | choice | What priority level should this vulnerability be assigned for remediation? |
+| `false_positive` | noul | Is this vulnerability alert likely a false positive given the asset and environment context? |
+| `exploitability` | noul | Is there evidence this vulnerability is actively exploitable in the current environment? |
+
+**Output used to:**
+- Re-prioritise vulnerability queues based on contextual threat level, not just CVSS score
+- Auto-close likely false positives (confidence > 0.90) for human confirmation
+- Escalate actively exploitable vulnerabilities to P1 immediately
+
+---
+
 ## Known gotchas
 
 | Issue | Fix |
